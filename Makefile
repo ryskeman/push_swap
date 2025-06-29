@@ -6,18 +6,22 @@
 #    By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/28 17:44:36 by fernafer          #+#    #+#              #
-#    Updated: 2025/06/28 17:44:37 by fernafer         ###   ########.fr        #
+#    Updated: 2025/06/29 19:57:03 by fernafer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
+FSANITIZE = -fsanitize=address -g3
 
 SRCS = main.c \
-	   error_handling.c \
+	 error_handling.c \
+	 utils.c \
+	 stack_swap_operations.c \
+	 stack_utils.c \
 
-OBJS = $(SRCS:.c=.o)
+OBJS	= $(SRCS:.c=.o)
 
 all: $(NAME)
 

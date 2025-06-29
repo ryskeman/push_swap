@@ -1,38 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   stack_push_operations.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/28 19:07:54 by fernafer          #+#    #+#             */
-/*   Updated: 2025/06/29 16:59:17 by fernafer         ###   ########.fr       */
+/*   Created: 2025/06/29 20:12:53 by fernafer          #+#    #+#             */
+/*   Updated: 2025/06/29 20:18:42 by fernafer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-long long	ft_atol(const char *str)
+/* Move first element from 'src' to 'dest' Actualize head and tail in stack*/
+static void	ft_push(t_node **src, t_node **dest)
 {
-	long long	res;
-	int			sign;
-	int			i;
+}
 
-	res = 0;
-	sign = 1;
-	i = 0;
-	while (str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\r'))
-		i++;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			sign = -1;
-		i++;
-	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		res = res * 10 + (str[i] - '0');
-		i++;
-	}
-	return (res * sign);
+void	pa(t_push_swap *data)
+{
+}
+
+void	pb(t_push_swap *data)
+{
 }
