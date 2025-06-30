@@ -1,0 +1,45 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_rotate_operations.c                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fernafer <fernafer@student.42madrid.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/30 14:49:38 by fernafer          #+#    #+#             */
+/*   Updated: 2025/06/30 16:40:48 by fernando         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
+static void	ft_rotate(t_node **head, t_node **tail, int *size)
+{
+	t_node	*old_first;
+
+	if (*size < 2 || !*head || !(*head)->next)
+		return ;
+	old_first = *head;
+	*head = (*head)->next;
+	(*tail)->next = old_first;
+	old_first->next = NULL;
+	*tail = old_first;
+}
+
+void	ra(t_push_swap *data)
+{
+	ft_rotate(&(data->stack_a), &(data->tail_a), &(data->size_a));
+	write (1, "ra\n", 3);
+}
+
+void	rb(t_push_swap *data)
+{
+	ft_rotate(&(data->stack_b), &(data->tail_b), &(data->size_b));
+	write (1, "rb\n", 3);
+}
+
+void	rr(t_push_swap *data)
+{
+	ft_rotate(&(data->stack_a), &(data->tail_a), &(data->size_a));
+	ft_rotate(&(data->stack_b), &(data->tail_b), &(data->size_b));
+	write (1, "rr\n", 3);
+}

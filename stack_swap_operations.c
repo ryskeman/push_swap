@@ -6,20 +6,20 @@
 /*   By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 19:40:22 by fernafer          #+#    #+#             */
-/*   Updated: 2025/06/29 20:12:58 by fernafer         ###   ########.fr       */
+/*   Updated: 2025/06/30 15:42:30 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /* Swap two first elements in a stack*/
-static void ft_swap(t_node **head, int *size)
+static void	ft_swap(t_node **head, int *size)
 {
 	t_node	*first;
 	t_node	*second;
 
 	if (*size < 2 || !*head || !(*head)->next)
-		return;
+		return ;
 	first = *head;
 	second = first->next;
 	first->next = second->next;

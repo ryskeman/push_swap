@@ -6,19 +6,22 @@
 #    By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/28 17:44:36 by fernafer          #+#    #+#              #
-#    Updated: 2025/06/29 19:57:03 by fernafer         ###   ########.fr        #
+#    Updated: 2025/06/30 16:13:11 by fernando         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -Iincludes/
 FSANITIZE = -fsanitize=address -g3
 
 SRCS = main.c \
 	 error_handling.c \
 	 utils.c \
 	 stack_swap_operations.c \
+	 stack_push_operations.c \
+	 stack_rotate_operations.c \
+	 stack_r_rotate_operations.c \
 	 stack_utils.c \
 
 OBJS	= $(SRCS:.c=.o)
@@ -33,7 +36,7 @@ $(NAME): $(OBJS)
 
 %.o: %.c
 	@echo "Compiling $< into $@"
-	$(CC) $(CFLAGS) $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJS)
@@ -44,7 +47,7 @@ fclean: clean
 	@echo "Deep cleaning completed"
 
 re: fclean all
-	@echo "Recompiling project..."
+	@echo "Rebuilding project..."
 
 .PHONY: all clean fclean re
 

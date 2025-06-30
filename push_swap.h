@@ -6,7 +6,7 @@
 /*   By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 17:51:43 by fernafer          #+#    #+#             */
-/*   Updated: 2025/06/29 19:49:47 by fernafer         ###   ########.fr       */
+/*   Updated: 2025/06/30 15:35:03 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,11 @@ void				sb(t_push_swap *data);
 void				ss(t_push_swap *data);
 void				pa(t_push_swap *data);
 void				pb(t_push_swap *data);
+void				ra(t_push_swap *data);
+void				rb(t_push_swap *data);
+void				rr(t_push_swap *data);
+void				rra(t_push_swap *data);
+void				rrb(t_push_swap *data);
+void				rrr(t_push_swap *data);
 
 #endif

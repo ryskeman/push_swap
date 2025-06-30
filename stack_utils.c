@@ -6,7 +6,7 @@
 /*   By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 17:07:13 by fernafer          #+#    #+#             */
-/*   Updated: 2025/06/29 19:43:12 by fernafer         ###   ########.fr       */
+/*   Updated: 2025/06/30 15:43:19 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_node	*new_node(int value)
 void	add_front(t_node **head, t_node **tail, t_node *new_node)
 {
 	if (!new_node)
-		return;
+		return ;
 	new_node->next = *head;
 	*head = new_node;
 	if (!*tail)
@@ -44,7 +44,6 @@ t_node	*pop_front(t_node **head, t_node **tail, int *size)
 
 	if (!*head)
 		return (NULL);
-
 	tmp = *head;
 	*head = (*head)->next;
 	if (!*head)

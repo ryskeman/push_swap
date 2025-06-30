@@ -6,7 +6,7 @@
 /*   By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 17:55:16 by fernafer          #+#    #+#             */
-/*   Updated: 2025/06/28 19:23:41 by fernafer         ###   ########.fr       */
+/*   Updated: 2025/06/30 15:33:12 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	check_arguments(int ac, char **av)
 	i = 1;
 	while (av[i])
 	{
-		if(!is_number(av[i]))
+		if (!is_number(av[i]))
 			ft_error();
 		if (!is_int_in_range(av[i]))
 			ft_error();
