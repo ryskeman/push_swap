@@ -1,38 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/28 19:07:54 by fernafer          #+#    #+#             */
-/*   Updated: 2025/07/01 16:10:48 by fernafer         ###   ########.fr       */
+/*   Created: 2025/04/16 10:34:10 by fernafer          #+#    #+#             */
+/*   Updated: 2025/04/21 16:14:03 by fernafer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-long long	ft_atol(const char *str)
+char	*ft_strdup(const char *s)
 {
-	long long	res;
-	int			sign;
-	int			i;
+	char	*s_copy;
+	size_t	s_size;
 
-	res = 0;
-	sign = 1;
-	i = 0;
-	while (str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\r'))
-		i++;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			sign = -1;
-		i++;
-	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		res = res * 10 + (str[i] - '0');
-		i++;
-	}
-	return (res * sign);
+	s_size = ft_strlen(s);
+	s_copy = malloc(s_size + 1);
+	if (s_copy == NULL)
+		return (NULL);
+	ft_memcpy(s_copy, s, s_size + 1);
+	return (s_copy);
 }

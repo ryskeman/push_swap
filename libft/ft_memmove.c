@@ -1,38 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/28 19:07:54 by fernafer          #+#    #+#             */
-/*   Updated: 2025/07/01 16:10:48 by fernafer         ###   ########.fr       */
+/*   Created: 2025/04/12 17:16:21 by fernafer          #+#    #+#             */
+/*   Updated: 2025/04/21 16:03:11 by fernafer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-long long	ft_atol(const char *str)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	long long	res;
-	int			sign;
-	int			i;
+	unsigned char		*d;
+	const unsigned char	*s;
+	size_t				i;
 
-	res = 0;
-	sign = 1;
-	i = 0;
-	while (str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\r'))
-		i++;
-	if (str[i] == '-' || str[i] == '+')
+	d = (unsigned char *)dst;
+	s = (const unsigned char *)src;
+	if (dst == src || len == 0)
+		return (dst);
+	if (d > s)
 	{
-		if (str[i] == '-')
-			sign = -1;
-		i++;
+		while (len--)
+			d[len] = s[len];
 	}
-	while (str[i] >= '0' && str[i] <= '9')
+	else
 	{
-		res = res * 10 + (str[i] - '0');
-		i++;
+		i = 0;
+		while (len--)
+		{
+			d[i] = s[i];
+			i++;
+		}
 	}
-	return (res * sign);
+	return (dst);
 }

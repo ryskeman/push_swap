@@ -1,38 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/28 19:07:54 by fernafer          #+#    #+#             */
-/*   Updated: 2025/07/01 16:10:48 by fernafer         ###   ########.fr       */
+/*   Created: 2025/04/15 12:30:45 by fernafer          #+#    #+#             */
+/*   Updated: 2025/04/21 16:26:04 by fernafer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-long long	ft_atol(const char *str)
+char	*ft_strrchr(const char *s, int c)
 {
-	long long	res;
-	int			sign;
-	int			i;
+	size_t	s_len;
 
-	res = 0;
-	sign = 1;
-	i = 0;
-	while (str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\r'))
-		i++;
-	if (str[i] == '-' || str[i] == '+')
+	s_len = ft_strlen(s);
+	if ((unsigned char)c == '\0')
+		return ((char *)&s[s_len]);
+	while (s_len--)
 	{
-		if (str[i] == '-')
-			sign = -1;
-		i++;
+		if (s[s_len] == (unsigned char)c)
+			return ((char *)&s[s_len]);
 	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		res = res * 10 + (str[i] - '0');
-		i++;
-	}
-	return (res * sign);
+	return (0);
 }

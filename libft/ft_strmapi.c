@@ -1,38 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/28 19:07:54 by fernafer          #+#    #+#             */
-/*   Updated: 2025/07/01 16:10:48 by fernafer         ###   ########.fr       */
+/*   Created: 2025/04/19 11:25:15 by fernafer          #+#    #+#             */
+/*   Updated: 2025/04/21 16:19:33 by fernafer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-long long	ft_atol(const char *str)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	long long	res;
-	int			sign;
-	int			i;
+	unsigned int	i;
+	size_t			s_len;
+	char			*new_str;
 
-	res = 0;
-	sign = 1;
+	if (!s || !f)
+		return (ft_strdup(""));
 	i = 0;
-	while (str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\r'))
-		i++;
-	if (str[i] == '-' || str[i] == '+')
+	s_len = ft_strlen(s);
+	new_str = malloc((s_len + 1) * sizeof(char));
+	if (!new_str)
+		return (NULL);
+	while (s[i])
 	{
-		if (str[i] == '-')
-			sign = -1;
+		new_str[i] = f(i, s[i]);
 		i++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		res = res * 10 + (str[i] - '0');
-		i++;
-	}
-	return (res * sign);
+	new_str[i] = '\0';
+	return (new_str);
 }

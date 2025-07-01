@@ -1,38 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/28 19:07:54 by fernafer          #+#    #+#             */
-/*   Updated: 2025/07/01 16:10:48 by fernafer         ###   ########.fr       */
+/*   Created: 2025/04/14 14:24:00 by fernafer          #+#    #+#             */
+/*   Updated: 2025/04/21 16:08:55 by fernafer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-long long	ft_atol(const char *str)
+int	ft_atoi(const char *nptr)
 {
-	long long	res;
-	int			sign;
-	int			i;
+	int	n;
+	int	sign;
 
-	res = 0;
+	n = 0;
 	sign = 1;
-	i = 0;
-	while (str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\r'))
-		i++;
-	if (str[i] == '-' || str[i] == '+')
+	while (*nptr == 32 || (*nptr >= 9 && *nptr <= 13))
+		nptr++;
+	if (*nptr == '+' || *nptr == '-')
 	{
-		if (str[i] == '-')
+		if (*nptr == '-')
 			sign = -1;
-		i++;
+		nptr++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
+	while (*nptr >= '0' && *nptr <= '9')
 	{
-		res = res * 10 + (str[i] - '0');
-		i++;
+		n = n * 10 + (*nptr - '0');
+		nptr++;
 	}
-	return (res * sign);
+	return (n * sign);
 }

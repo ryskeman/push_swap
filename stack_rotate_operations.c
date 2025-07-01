@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_rotate_operations.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernafer <fernafer@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:49:38 by fernafer          #+#    #+#             */
-/*   Updated: 2025/06/30 16:40:48 by fernando         ###   ########.fr       */
+/*   Updated: 2025/07/01 16:10:42 by fernafer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
