@@ -6,10 +6,11 @@
 /*   By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 17:07:13 by fernafer          #+#    #+#             */
-/*   Updated: 2025/07/01 16:10:45 by fernafer         ###   ########.fr       */
+/*   Updated: 2025/07/23 18:17:43 by fernafer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "push_swap.h"
 
 /* Create a New Node with received value*/
@@ -53,7 +54,24 @@ t_node	*pop_front(t_node **head, t_node **tail, int *size)
 	return (tmp);
 }
 
-/* Free all stack memory*/
+/* Print stacks state. Only depuration */
+void	print_stack(t_node *stack, const char *name, int size)
+{
+	ft_printf("%s (size %d):\n", name, size);
+	if (!stack)
+	{
+		ft_printf("   [empty]\n");
+		return ;
+	}
+	while (stack)
+	{
+		ft_printf("   %d\n", stack->value);
+		stack = stack->next;
+	}
+	ft_printf("\n");
+}
+
+/* Free all stack memory */
 void	free_stack(t_node **head)
 {
 	t_node	*current;

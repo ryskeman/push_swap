@@ -6,7 +6,7 @@
 /*   By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 19:07:54 by fernafer          #+#    #+#             */
-/*   Updated: 2025/07/01 16:10:48 by fernafer         ###   ########.fr       */
+/*   Updated: 2025/07/23 18:41:12 by fernafer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,27 @@ long long	ft_atol(const char *str)
 		i++;
 	}
 	return (res * sign);
+}
+
+/* Function that assign calculated index at current node */
+void	assign_index(t_push_swap *data)
+{
+	t_node	*current;
+	t_node	*comparer;
+	int		indx;
+
+	current = data->stack_a;
+	while (current)
+	{
+		indx = 0;
+		comparer = data->stack_a;
+		while (comparer)
+		{
+			if (comparer->value < current->value)
+				indx++;
+			comparer = comparer->next;
+		}
+		current->index = indx;
+		current = current->next;
+	}
 }

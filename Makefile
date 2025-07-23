@@ -6,7 +6,7 @@
 #    By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/28 17:44:36 by fernafer          #+#    #+#              #
-#    Updated: 2025/07/01 18:11:31 by fernafer         ###   ########.fr        #
+#    Updated: 2025/07/23 14:38:11 by fernafer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ FSANITIZE = -fsanitize=address -g3
 
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
-LIBFT_INCLUDE = -I$(LIBFT_DIR)/includes/libft.h
+LIBFT_INCLUDE = -I$(LIBFT_DIR)/
 
 SRCS = main.c \
 	 error_handling.c \
