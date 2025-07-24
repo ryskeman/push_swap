@@ -6,7 +6,7 @@
 /*   By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 17:51:43 by fernafer          #+#    #+#             */
-/*   Updated: 2025/07/24 02:38:50 by fernafer         ###   ########.fr       */
+/*   Updated: 2025/07/24 12:42:02 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void				check_arguments(int ac, char **av);
 int					is_number(char *str);
 int					has_duplicates(char **argv);
 int					is_int_in_range(char *str);
+int					is_sorted(t_node *stack_a, t_node *stack_b);
+
 long long			ft_atol(const char *str);
 void				assign_index(t_push_swap *data);
 void				init_and_fill(t_push_swap *data, int ac, char **av);
@@ -49,6 +51,8 @@ t_node				*pop_front(t_node **head, t_node **tail, int *size);
 void				add_front(t_node **head, t_node **tail, t_node *new_node);
 void				free_stack(t_node **head);
 void				print_stack(t_node *stack, const char *name, int size);
+void				sort_two(t_push_swap *data);
+void				sort_three(t_push_swap *data);
 
 void				sa(t_push_swap *data);
 void				sb(t_push_swap *data);

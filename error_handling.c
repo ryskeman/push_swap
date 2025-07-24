@@ -6,7 +6,7 @@
 /*   By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 17:55:16 by fernafer          #+#    #+#             */
-/*   Updated: 2025/07/04 13:48:36 by fernafer         ###   ########.fr       */
+/*   Updated: 2025/07/24 16:03:29 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	check_arguments(int ac, char **av)
 	int	i;
 
 	if (ac < 2)
-		ft_error();
+		exit(EXIT_FAILURE);
 	i = 1;
 	while (av[i])
 	{

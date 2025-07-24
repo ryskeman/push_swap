@@ -6,7 +6,7 @@
 /*   By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 19:40:22 by fernafer          #+#    #+#             */
-/*   Updated: 2025/07/04 13:39:42 by fernafer         ###   ########.fr       */
+/*   Updated: 2025/07/24 12:01:43 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,18 @@ static void	ft_swap(t_node **head, int *size)
 void	sa(t_push_swap *data)
 {
 	ft_swap(&(data->stack_a), &(data->size_a));
-	write (1, "sa\n", 3);
+	ft_printf("sa\n");
 }
 
 void	sb(t_push_swap *data)
 {
 	ft_swap(&(data->stack_b), &(data->size_b));
-	write (1, "sb\n", 3);
+	ft_printf("sb\n");
 }
 
 void	ss(t_push_swap *data)
 {
 	ft_swap(&(data->stack_a), &(data->size_a));
 	ft_swap(&(data->stack_b), &(data->size_b));
-	write (1, "ss\n", 3);
+	ft_printf("ss\n");
 }

@@ -6,7 +6,7 @@
 #    By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/28 17:44:36 by fernafer          #+#    #+#              #
-#    Updated: 2025/07/24 02:02:41 by fernafer         ###   ########.fr        #
+#    Updated: 2025/07/24 11:03:17 by fernando         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ LIBFT_INCLUDE = -I$(LIBFT_DIR)/
 SRCS = main.c \
 	 error_handling.c \
 	 utils.c \
+	 sort_utils.c \
 	 stack_init.c \
 	 stack_swap_operations.c \
 	 stack_push_operations.c \
