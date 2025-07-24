@@ -6,7 +6,7 @@
 /*   By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 17:51:43 by fernafer          #+#    #+#             */
-/*   Updated: 2025/07/23 18:46:55 by fernafer         ###   ########.fr       */
+/*   Updated: 2025/07/24 02:38:50 by fernafer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include "libft.h"
 
 typedef struct s_node
 {
@@ -40,6 +41,8 @@ int					has_duplicates(char **argv);
 int					is_int_in_range(char *str);
 long long			ft_atol(const char *str);
 void				assign_index(t_push_swap *data);
+void				init_and_fill(t_push_swap *data, int ac, char **av);
+void				print_initial_stack(t_push_swap *data);
 
 t_node				*new_node(int value);
 t_node				*pop_front(t_node **head, t_node **tail, int *size);
