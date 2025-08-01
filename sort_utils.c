@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   sort_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernafer <fernafer@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 10:59:20 by fernafer          #+#    #+#             */
-/*   Updated: 2025/07/24 12:44:33 by fernando         ###   ########.fr       */
+/*   Updated: 2025/08/01 21:57:00 by fernafer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "push_swap.h"
 
 /* Return 1 if stack A is sorted and stack B is empty, 0 otherwise. */
@@ -64,4 +65,48 @@ void	sort_three(t_push_swap *data)
 		sa(data);
 		ra(data);
 	}
+}
+
+/*  Sorts Stack A if it contains 4 or 5 elements. */
+void	sort_five(t_push_swap *data)
+{
+	int		i;
+	int		target_idx;
+	int		pos;
+	int		elements;
+	t_node	*current;
+
+	elements = data->size_a - 3;
+	i = 0;
+	current = data->stack_a;
+	while (i < elements)
+	{
+		target_idx = i;
+		pos = 0;
+		current = data->stack_a;
+		while (current)
+		{
+			if (current->index == target_idx)
+				break ;
+			current = current->next;
+			pos++;
+		}
+		if (pos <= data->size_a / 2)
+		{
+			while (data->stack_a->index != target_idx)
+				ra(data);
+		}
+		else
+		{
+			while (data->stack_a->index != target_idx)
+				rra(data);
+		}
+		pb(data);
+		i++;
+	}
+	sort_three(data);
+	if (data->size_b == 2 && data->stack_b->index == 1)
+		rb(data);
+	while (data->size_b > 0)
+		pa(data);
 }

@@ -6,7 +6,7 @@
 /*   By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 13:38:23 by fernafer          #+#    #+#             */
-/*   Updated: 2025/07/24 12:51:28 by fernando         ###   ########.fr       */
+/*   Updated: 2025/08/01 22:02:51 by fernafer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ int	main(int ac, char **av)
 		sort_two(&data);
 	else if (data.size_a == 3)
 		sort_three(&data);
-	//else if (data.size <= 5){ sort_five(&data);}
+	else if (data.size_a <= 5)
+		sort_five(&data);
 	//else {main_sort_algorithm(&data);}
 
 	/* 5. Free memory */
