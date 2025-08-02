@@ -6,7 +6,7 @@
 /*   By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 15:11:33 by fernafer          #+#    #+#             */
-/*   Updated: 2025/08/01 20:29:25 by fernafer         ###   ########.fr       */
+/*   Updated: 2025/08/02 01:39:48 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,14 @@ void	rra(t_push_swap *data)
 {
 	ft_reverse_rotate(&(data->stack_a), &(data->tail_a), &(data->size_a));
 	ft_printf("rra\n");
+	print_stacks_debug(data);
 }
 
 void	rrb(t_push_swap *data)
 {
 	ft_reverse_rotate(&(data->stack_b), &(data->tail_b), &(data->size_b));
 	ft_printf("rrb\n");
+	print_stacks_debug(data);
 }
 
 void	rrr(t_push_swap *data)
@@ -48,4 +50,5 @@ void	rrr(t_push_swap *data)
 	ft_reverse_rotate(&(data->stack_a), &(data->tail_a), &(data->size_a));
 	ft_reverse_rotate(&(data->stack_b), &(data->tail_b), &(data->size_b));
 	ft_printf("rrr\n");
+	print_stacks_debug(data);
 }

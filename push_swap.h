@@ -6,7 +6,7 @@
 /*   By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 17:51:43 by fernafer          #+#    #+#             */
-/*   Updated: 2025/07/24 12:42:02 by fernando         ###   ########.fr       */
+/*   Updated: 2025/08/02 01:36:52 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,10 @@ t_node				*pop_front(t_node **head, t_node **tail, int *size);
 void				add_front(t_node **head, t_node **tail, t_node *new_node);
 void				free_stack(t_node **head);
 void				print_stack(t_node *stack, const char *name, int size);
+void				print_stacks_debug(t_push_swap *data);
 void				sort_two(t_push_swap *data);
 void				sort_three(t_push_swap *data);
+void				sort_five(t_push_swap *data);
 
 void				sa(t_push_swap *data);
 void				sb(t_push_swap *data);

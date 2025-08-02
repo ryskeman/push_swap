@@ -6,7 +6,7 @@
 /*   By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 10:59:20 by fernafer          #+#    #+#             */
-/*   Updated: 2025/08/01 21:57:00 by fernafer         ###   ########.fr       */
+/*   Updated: 2025/08/02 02:22:05 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,43 +70,56 @@ void	sort_three(t_push_swap *data)
 /*  Sorts Stack A if it contains 4 or 5 elements. */
 void	sort_five(t_push_swap *data)
 {
-	int		i;
+	int		initial_size_a;
 	int		target_idx;
 	int		pos;
-	int		elements;
 	t_node	*current;
 
-	elements = data->size_a - 3;
-	i = 0;
+        // Phase 1: push smallest elements to B.
+	initial_size_a = data->size_a;
+	target_idx = 0;
+	pos = 0;
 	current = data->stack_a;
-	while (i < elements)
+	while (current && current->index != target_idx)
 	{
-		target_idx = i;
+		current = current->next;
+		pos++;
+	}
+	if (pos <= data->size_a / 2)
+		while (data->stack_a->index != target_idx)
+			ra(data);
+	else
+		while (data->stack_a->index != target_idx)
+			rra(data);
+	pb(data);
+
+	// If original stack had 5 elements, index 1 to B.
+	if (initial_size_a == 5)
+	{
+		target_idx = 1;
 		pos = 0;
 		current = data->stack_a;
-		while (current)
+		while (current && current->index != target_idx)
 		{
-			if (current->index == target_idx)
-				break ;
 			current = current->next;
 			pos++;
 		}
 		if (pos <= data->size_a / 2)
-		{
 			while (data->stack_a->index != target_idx)
-				ra(data);
-		}
+		        	ra(data);
 		else
-		{
 			while (data->stack_a->index != target_idx)
-				rra(data);
-		}
+                        	rra(data);
 		pb(data);
-		i++;
 	}
-	sort_three(data);
-	if (data->size_b == 2 && data->stack_b->index == 1)
-		rb(data);
+
+	// Phase 2: Sort remaining 2 or 3 elememnts in A
+	if (data->size_a == 3)
+		sort_three(data);
+	else if (data->size_a == 2)
+		sort_two(data);
+
+	// Phase 3: Push elements back from B to A in correct order.
 	while (data->size_b > 0)
 		pa(data);
 }
