@@ -6,7 +6,7 @@
 /*   By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 20:12:53 by fernafer          #+#    #+#             */
-/*   Updated: 2025/08/02 01:38:28 by fernando         ###   ########.fr       */
+/*   Updated: 2025/08/02 16:28:46 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	pa(t_push_swap *data)
 	add_front(&(data->stack_a), &(data->tail_a), node_to_move);
 	data->size_a++;
 	ft_printf("pa\n");
-	print_stacks_debug(data);
+	//print_stacks_debug(data);
 }
 
 void	pb(t_push_swap *data)
@@ -37,5 +37,5 @@ void	pb(t_push_swap *data)
 	add_front(&(data->stack_b), &(data->tail_b), node_to_move);
 	data->size_b++;
 	ft_printf("pb\n");
-	print_stacks_debug(data);
+	//print_stacks_debug(data);
 }

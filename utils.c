@@ -6,7 +6,7 @@
 /*   By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 19:07:54 by fernafer          #+#    #+#             */
-/*   Updated: 2025/08/02 01:35:58 by fernando         ###   ########.fr       */
+/*   Updated: 2025/08/02 16:41:49 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	assign_index(t_push_swap *data)
 }
 
 /* Function that DEBUG Stack movements. */
+/*
 void	print_stacks_debug(t_push_swap *data)
 {
 	t_node *current_a = data->stack_a;
@@ -87,3 +88,4 @@ void	print_stacks_debug(t_push_swap *data)
                 ft_printf("  (empty)\n");
 	ft_printf("--------------------\n\n");
 }
+*/
