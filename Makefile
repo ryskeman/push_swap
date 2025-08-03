@@ -6,7 +6,7 @@
 #    By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/28 17:44:36 by fernafer          #+#    #+#              #
-#    Updated: 2025/08/03 01:40:34 by fernando         ###   ########.fr        #
+#    Updated: 2025/08/03 17:40:26 by fernando         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRCS = main.c \
 	 stack_r_rotate_operations.c \
 	 stack_utils.c \
 	 turkish_sort.c \
+	 moves_costs.c \
 
 OBJS	= $(SRCS:.c=.o)
 

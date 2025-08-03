@@ -6,7 +6,7 @@
 /*   By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 10:59:20 by fernafer          #+#    #+#             */
-/*   Updated: 2025/08/02 17:09:21 by fernando         ###   ########.fr       */
+/*   Updated: 2025/08/03 13:30:19 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ void	sort_five(t_push_swap *data)
 {
 	int		initial_size_a;
 
+	if (is_sorted(data->stack_a, data->stack_b))
+		return ;
 	// Phase 1: push smallest elements to B.
 	initial_size_a = data->size_a;
 	push_indx_to_b(data, 0);
