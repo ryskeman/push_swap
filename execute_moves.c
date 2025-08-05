@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   execute_moves.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernafer@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/03 19:16:14 by fernando          #+#    #+#             */
-/*   Updated: 2025/08/03 20:01:26 by fernando         ###   ########.fr       */
+/*   Created: 2025/08/03 19:16:14 by fernafer          #+#    #+#             */
+/*   Updated: 2025/08/05 20:02:29 by fernafer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	execute_same_direction_rot(t_push_swap *data, t_rot_costs *rot_needs, int pos_a_target, int pos_b)
+void	execute_same_direction_rot(t_push_swap *data, t_rot_costs *rot_needs,
+		int pos_a_target, int pos_b)
 {
 	// A CASE. Both rot up -> rr.
-	if (pos_a_target <= data->size.a / 2 && pos_b <= data->size_b / 2)
+	if (pos_a_target <= data->size_a / 2 && pos_b <= data->size_b / 2)
 	{
 		while (rot_needs->ra > 0 && rot_needs->rb > 0)
 		{
@@ -40,19 +41,20 @@ void	execute_remaining_rot(t_push_swap *data, t_rot_costs rot_needs)
 {
 	while (rot_needs.ra-- > 0)
 		ra(data);
-        while (rot_needs.rb-- > 0)
-                rb(data);
-        while (rot_needs.rra-- > 0)
-                rra(data);
-        while (rot_need.rrb-- > 0)
-                rrb(data);
+	while (rot_needs.rb-- > 0)
+		rb(data);
+	while (rot_needs.rra-- > 0)
+		rra(data);
+	while (rot_needs.rrb-- > 0)
+		rrb(data);
 }
 
-t_rot_costs	calculate_rot_needs(t_push_swap *data, t_node *b_node, t_node *target_a_node)
+t_rot_costs	calculate_rot_needs(t_push_swap *data, t_node *b_node,
+		t_node *target_a_node)
 {
 	t_rot_costs	rot_needs;
-	int		pos_b;
-	int		pos_a_target;
+	int			pos_b;
+	int			pos_a_target;
 
 	pos_b = get_node_position(data->stack_b, b_node);
 	pos_a_target = get_node_position(data->stack_a, target_a_node);
@@ -64,12 +66,21 @@ t_rot_costs	calculate_rot_needs(t_push_swap *data, t_node *b_node, t_node *targe
 }
 
 // MODIFICAR FUNCION CON NUEVOS VALORES, ANIADIR PROTOTIPOS AL .H
-void	execute_optimal_moves(t_push_swap *data, t_node *b_node_to_push, int ra_need, int rb_need, int rra_need, int rrb_need)
+void	execute_optimal_moves(t_push_swap *data, t_node *b_node_to_push)
 {
-	t_node	*target_a_node;
-	int		pos_b;
-	int		pos_a_target;
+	t_node		*target_a_node;
+	t_rot_costs	rot_needs;
 
 	// 1. calculates position
-	pos_b
+	target_a_node = find_target_in_a(data->stack_a, b_node_to_push);
+	// 2. Calculates number of rot needed.
+	rot_needs = calculate_rot_needs(data, b_node_to_push, target_a_node);
+	// 3. Exec sync rotations(rr, rrr)
+	execute_same_direction_rot(data, &rot_needs,
+		get_node_position(data->stack_a, target_a_node),
+		get_node_position(data->stack_b, b_node_to_push));
+	// 4. Exec remaining individual rotations
+	execute_remaining_rot(data, rot_needs);
+	// 5. Finally moves node B to A
+	pa(data);
 }

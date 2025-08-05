@@ -6,7 +6,7 @@
 /*   By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 19:07:54 by fernafer          #+#    #+#             */
-/*   Updated: 2025/08/02 16:41:49 by fernando         ###   ########.fr       */
+/*   Updated: 2025/08/05 19:27:08 by fernafer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ void	print_stacks_debug(t_push_swap *data)
 	ft_printf("Stack A (size: %d):\n", data->size_a);
 	while (current_a)
 	{
-		ft_printf("  [%d] Value: %d, Index: %d\n", i++, current_a->value, current_a->index);
+		ft_printf("  [%d] Value: %d, Index: %d\n",
+		 i++, current_a->value, current_a->index);
 		current_a = current_a->next;
 	}
 	if (data->size_a == 0)
@@ -81,7 +82,8 @@ void	print_stacks_debug(t_push_swap *data)
 	ft_printf("Stack B (size: %d):\n", data->size_b);
         while (current_b)
         {
-                ft_printf("  [%d] Value: %d, Index: %d\n", i++, current_b->value, current_b->index);
+                ft_printf("  [%d] Value: %d, Index: %d\n",
+				 i++, current_b->value, current_b->index);
                 current_b = current_b->next;
         }
         if (data->size_b == 0)

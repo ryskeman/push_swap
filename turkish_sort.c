@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   turkish_sort.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernafer@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/03 00:53:50 by fernando          #+#    #+#             */
-/*   Updated: 2025/08/03 19:09:53 by fernando         ###   ########.fr       */
+/*   Created: 2025/08/03 00:53:50 by fernafer          #+#    #+#             */
+/*   Updated: 2025/08/05 20:16:26 by fernafer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,20 @@ t_node	*find_target_in_a(t_node *stack_a_head, t_node *b_node)
 
 	target_node = NULL;
 	min_diff = 2147483647;
-
 	current_a = stack_a_head;
 	while (current_a)
 	{
 		/* case 1: B match A. Find first element > b_node->value */
-		if (b_node->value < current_a->value && current_a->value - b_node->value < min_diff)
+		if (b_node->value < current_a->value
+			&& current_a->value - b_node->value < min_diff)
 		{
 			min_diff = current_a->value - b_node->value;
 			target_node = current_a;
 		}
 		current_a = current_a->next;
 	}
-	/* Case 2: B is the smallest or biggest, if not match with bigger target B is biggest. */
+	/* Case 2: B is the smallest or biggest, if not match with
+		bigger target B is biggest. */
 	if (target_node == NULL)
 	{
 		current_a = stack_a_head;
@@ -104,7 +105,9 @@ void	sort_big(t_push_swap *data)
 	// 1. Phase: Push initial elements from A to B, except 0, 1, 2 index.
 	while (data->size_a > 3)
 	{
-		if (data->stack_a->index == 0 || data->stack_a->index == 1 || data->stack_a->index == 2)
+		if (data->stack_a->index == 0
+			|| data->stack_a->index == 1
+			|| data->stack_a->index == 2)
 			ra(data);
 		else
 			pb(data);
@@ -118,12 +121,12 @@ void	sort_big(t_push_swap *data)
 	{
 		cheapest_node = get_cheapest_node(data);
 		// ONLY FOR OUTPUT DEBUGG
-		if (cheapest_node)
-			ft_printf("\n--> Nodo mas barato en B para empujar a A: %d (indice %d) con costo %d\n", cheapest_node->value, cheapest_node->index, calculate_total_push_cost(data, cheapest_node));
-		else
-			ft_printf("\nNo se encontro nodo mas barato en B. Esto no deber'ia pasar si size_b > 0.\n");
+		// if (cheapest_node)
+		// 	ft_printf("\n--> Nodo mas barato en B para empujar a A: %d (indice %d) con costo %d\n", cheapest_node->value, cheapest_node->index, calculate_total_push_cost(data, cheapest_node));
+		// else
+		// 	ft_printf("\nNo se encontro nodo mas barato en B. Esto no deber'ia pasar si size_b > 0.\n");
 		// AQUI SIGUIENTE PASO PARA EJECUTAR MOVIMIENTOS.
-		// execute_optimal_moves(data, cheapest_node);
+		execute_optimal_moves(data, cheapest_node);
 	}
 	// 3. Phase: Rotate A if needed.
 }

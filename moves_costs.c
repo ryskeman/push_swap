@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves_costs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernafer@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/03 14:28:21 by fernando          #+#    #+#             */
-/*   Updated: 2025/08/03 18:30:05 by fernando         ###   ########.fr       */
+/*   Created: 2025/08/03 14:28:21 by fernafer          #+#    #+#             */
+/*   Updated: 2025/08/05 19:26:03 by fernafer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ int	get_cheap_rot_cost(t_node *stack_head, t_node *node_to_move, int stack_size)
 }
 
 /* Calculates individual cost of rotations moves. */
-void	get_indiv_rot_cost(t_push_swap *data, t_node *b_node,int *cost_a_ptr, int *cost_b_ptr)
+void	get_indiv_rot_cost(t_push_swap *data, t_node *b_node, int *cost_a_ptr,
+		int *cost_b_ptr)
 {
 	t_node	*target_node_a;
 
@@ -58,11 +59,13 @@ void	get_indiv_rot_cost(t_push_swap *data, t_node *b_node,int *cost_a_ptr, int *
 	// 2. Calculate B rotation cost to push up.
 	*cost_b_ptr = get_cheap_rot_cost(data->stack_b, b_node, data->size_b);
 	// 3. Calculate A rotation cost to push up.
-	*cost_a_ptr = get_cheap_rot_cost(data->stack_a, target_node_a, data->size_a);
+	*cost_a_ptr = get_cheap_rot_cost(data->stack_a, target_node_a,
+			data->size_a);
 }
 
 /* Get final total costs. */
-int	get_final_total_cost(t_push_swap *data, int cost_a, int cost_b, t_node *b_node)
+int	get_final_total_cost(t_push_swap *data, int cost_a, int cost_b,
+		t_node *b_node)
 {
 	int		total_cost;
 	int		pos_b;
@@ -76,7 +79,7 @@ int	get_final_total_cost(t_push_swap *data, int cost_a, int cost_b, t_node *b_no
 	// If both rotates up...
 	if (pos_a_target <= data->size_a / 2 && pos_b <= data->size_b / 2)
 	{
-		if(cost_a > cost_b)
+		if (cost_a > cost_b)
 			total_cost = cost_a;
 		else
 			total_cost = cost_b;
@@ -96,13 +99,11 @@ int	get_final_total_cost(t_push_swap *data, int cost_a, int cost_b, t_node *b_no
 /* Calculate total moves costs. */
 int	calculate_total_push_cost(t_push_swap *data, t_node *b_node)
 {
-	int		cost_a;
-	int		cost_b;
-	int		total_cost;
+	int	cost_a;
+	int	cost_b;
+	int	total_cost;
 
-	// 1. Get individual costs.
 	get_indiv_rot_cost(data, b_node, &cost_a, &cost_b);
-	// 2. Calculates final cost.
 	total_cost = get_final_total_cost(data, cost_a, cost_b, b_node);
 	return (total_cost);
 }
