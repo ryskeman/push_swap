@@ -6,20 +6,20 @@
 /*   By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 10:59:20 by fernafer          #+#    #+#             */
-/*   Updated: 2025/08/05 19:26:41 by fernafer         ###   ########.fr       */
+/*   Updated: 2025/08/05 20:40:37 by fernafer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /* Return 1 if stack A is sorted and stack B is empty, 0 otherwise. */
-int	is_sorted(t_node *stack_a, t_node *stack_b)
+int	is_sorted(t_node *stack_a)
 {
-	if (stack_b != NULL)
-		return (0);
-	if (stack_a == NULL || stack_a->next == NULL)
-		return (1);
-	while (stack_a->next != NULL)
+	// if (stack_b != NULL)
+	// 	return (0);
+	// if (stack_a == NULL || stack_a->next == NULL)
+	// 	return (1);
+	while (stack_a != NULL && stack_a->next != NULL)
 	{
 		if (stack_a->value > stack_a->next->value)
 			return (0);
@@ -27,6 +27,20 @@ int	is_sorted(t_node *stack_a, t_node *stack_b)
 	}
 	return (1);
 }
+// int	is_sorted(t_node *stack_a, t_node *stack_b)
+// {
+// 	// if (stack_b != NULL)
+// 	// 	return (0);
+// 	// if (stack_a == NULL || stack_a->next == NULL)
+// 	// 	return (1);
+// 	while (stack_a != NULL && stack_a->next != NULL)
+// 	{
+// 		if (stack_a->value > stack_a->next->value)
+// 			return (0);
+// 		stack_a = stack_a->next;
+// 	}
+// 	return (1);
+// }
 
 /* Sorts Stack A if it contains exactly two elements. */
 void	sort_two(t_push_swap *data)
@@ -47,7 +61,7 @@ void	sort_three(t_push_swap *data)
 	n1 = data->stack_a->value;
 	n2 = data->stack_a->next->value;
 	n3 = data->stack_a->next->next->value;
-	if (is_sorted(data->stack_a, data->stack_b))
+	if (is_sorted(data->stack_a))
 		return ;
 	if (n1 > n2 && n1 < n3)
 		sa(data);
@@ -94,7 +108,7 @@ void	sort_five(t_push_swap *data)
 {
 	int		initial_size_a;
 
-	if (is_sorted(data->stack_a, data->stack_b))
+	if (is_sorted(data->stack_a))
 		return ;
 	// Phase 1: push smallest elements to B.
 	initial_size_a = data->size_a;

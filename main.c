@@ -6,7 +6,7 @@
 /*   By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 13:38:23 by fernafer          #+#    #+#             */
-/*   Updated: 2025/08/05 18:53:18 by fernafer         ###   ########.fr       */
+/*   Updated: 2025/08/05 20:57:21 by fernafer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	setup_push_swap(t_push_swap *data, int ac, char **av)
 /* Handles final result validation and memory deallocation. */
 static void	cleanup_push_swap(t_push_swap *data)
 {
-	if (is_sorted(data->stack_a, data->stack_b))
+	if (is_sorted(data->stack_a))
 		ft_printf("\nOK!\n");
 	else
 		ft_printf("\nKO!\n");
@@ -39,7 +39,7 @@ int	main(int ac, char **av)
 	setup_push_swap(&data, ac, av);
 	/* --- TEMP TEST --- */
 	/* --- TEST END --- */
-	if (is_sorted(data.stack_a, data.stack_b))
+	if (is_sorted(data.stack_a))
 		ft_printf("\nStack ya ordenado al inicio.\n");
 	else if (data.size_a == 2)
 		sort_two(&data);
@@ -49,6 +49,7 @@ int	main(int ac, char **av)
 		sort_five(&data);
 	else
 		sort_big(&data);
+	print_initial_stack(&data);
 	cleanup_push_swap(&data);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 00:53:50 by fernafer          #+#    #+#             */
-/*   Updated: 2025/08/05 20:16:26 by fernafer         ###   ########.fr       */
+/*   Updated: 2025/08/05 21:46:24 by fernafer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,43 +17,113 @@
 t_node	*find_target_in_a(t_node *stack_a_head, t_node *b_node)
 {
 	t_node	*target_node;
+	t_node	*current_b;
 	t_node	*current_a;
 	t_node	*smallest_a;
 	long	min_diff;
 
 	target_node = NULL;
 	min_diff = 2147483647;
-	current_a = stack_a_head;
-	while (current_a)
+	current_b = b_node;
+	while (current_b)
 	{
-		/* case 1: B match A. Find first element > b_node->value */
-		if (b_node->value < current_a->value
-			&& current_a->value - b_node->value < min_diff)
+		current_a = stack_a_head;
+		while (current_a)
 		{
-			min_diff = current_a->value - b_node->value;
-			target_node = current_a;
+			if (b_node->value < current_a->value && current_a->value < min_diff)
+			{
+				min_diff = current_a->value;
+				target_node = current_a;
+			}
+			current_a = current_a->next;
 		}
-		current_a = current_a->next;
+		current_b = current_b->next;
+		/* case 1: B match A. Find first element > b_node->value */
+		// if (b_node->value < current_a->value && current_a->value
+		// 	- b_node->value < min_diff)
+		// {
+		// 	min_diff = current_a->value - b_node->value;
+		// 	target_node = current_a;
+		// }
 	}
 	/* Case 2: B is the smallest or biggest, if not match with
 		bigger target B is biggest. */
 	if (target_node == NULL)
 	{
-		current_a = stack_a_head;
-		target_node = current_a;
-		if (!target_node)
-			return (NULL);
-		smallest_a = stack_a_head;
-		while (current_a)
+		current_b = b_node;
+		while (current_b)
 		{
-			if (current_a->index < smallest_a->index)
-				smallest_a = current_a;
-			current_a = current_a->next;
+			current_a = stack_a_head;
+			smallest_a = stack_a_head;
+			target_node = current_a;
+			while (current_a)
+			{
+				if (current_a->index < smallest_a->index)
+					smallest_a = current_a;
+				current_a = current_a->next;
+			}
+			current_b = current_b->next;
 		}
+		// current_a = stack_a_head;
+		// if (!target_node)
+		// 	return (NULL);
+		// while (current_a)
+		// {
+		// 	if (current_a->index < smallest_a->index)
+		// 		smallest_a = current_a;
+		// 	current_a = current_a->next;
+		// }
+		// target_node = smallest_a;
 		target_node = smallest_a;
 	}
 	return (target_node);
 }
+
+// t_node	*find_target_in_a(t_node *stack_a_head, t_node *b_node)
+// {
+// 	t_node	*target_node;
+// 	t_node	*current_a;
+// 	t_node	*smallest_a;
+// 	long	min_diff;
+
+// 	target_node = NULL;
+// 	min_diff = 2147483647;
+// 	current_a = stack_a_head;
+// 	while (current_a)
+// 	{
+// 		/* case 1: B match A. Find first element > b_node->value */
+// 		// if (b_node->value < current_a->value && current_a->value
+// 		// 	- b_node->value < min_diff)
+// 		// {
+// 		// 	min_diff = current_a->value - b_node->value;
+// 		// 	target_node = current_a;
+// 		// }
+// 		if (b_node->value < current_a->value && current_a->value < min_diff)
+// 		{
+// 			min_diff = current_a->value;
+// 			target_node = current_a;
+// 		}
+// 		current_a = current_a->next;
+// 	}
+// 	/* Case 2: B is the smallest or biggest, if not match with
+// 		bigger target B is biggest. */
+// 	if (target_node == NULL)
+// 	{
+// 		current_a = stack_a_head;
+// 		target_node = current_a;
+// 		if (!target_node)
+// 			return (NULL);
+// 		smallest_a = stack_a_head;
+// 		while (current_a)
+// 		{
+// 			if (current_a->index < smallest_a->index)
+// 				smallest_a = current_a;
+// 			current_a = current_a->next;
+// 		}
+// 		target_node = smallest_a;
+// 	}
+// 	return (target_node);
+// }
 
 /* Gets the current position of node in Stack. */
 int	get_node_position(t_node *stack_head, t_node *node_to_find)
@@ -101,32 +171,45 @@ t_node	*get_cheapest_node(t_push_swap *data)
 void	sort_big(t_push_swap *data)
 {
 	t_node	*cheapest_node;
+	t_node	*smallest_node;
+	int		pos;
 
 	// 1. Phase: Push initial elements from A to B, except 0, 1, 2 index.
 	while (data->size_a > 3)
 	{
-		if (data->stack_a->index == 0
-			|| data->stack_a->index == 1
-			|| data->stack_a->index == 2)
-			ra(data);
-		else
-			pb(data);
+		// if (data->stack_a->index == 0
+		// 	|| data->stack_a->index == 1
+		// 	|| data->stack_a->index == 2)
+		// 	ra(data);
+		// else
+		pb(data);
 	}
-	if (data->size_a == 3)
-		sort_three(data);
-	else if (data->size_a == 2)
-		sort_two(data);
+	// if (data->size_a == 3)
+	sort_three(data);
 	// 2. Phase: Main loop-> while B is not empty.
 	while (data->size_b > 0)
 	{
+		// 1. Asignar posiciones en los stacks.
+		// 2. Asignar targets.
 		cheapest_node = get_cheapest_node(data);
-		// ONLY FOR OUTPUT DEBUGG
-		// if (cheapest_node)
-		// 	ft_printf("\n--> Nodo mas barato en B para empujar a A: %d (indice %d) con costo %d\n", cheapest_node->value, cheapest_node->index, calculate_total_push_cost(data, cheapest_node));
-		// else
-		// 	ft_printf("\nNo se encontro nodo mas barato en B. Esto no deber'ia pasar si size_b > 0.\n");
-		// AQUI SIGUIENTE PASO PARA EJECUTAR MOVIMIENTOS.
 		execute_optimal_moves(data, cheapest_node);
 	}
+	print_initial_stack(data);
 	// 3. Phase: Rotate A if needed.
+	if (data->stack_a->index != 0)
+	{
+		smallest_node = find_node_by_index(data->stack_a, 0);
+		pos = get_node_position(data->stack_a, smallest_node);
+		// Rotar hacia arriba o abajo, lo que sea más barato.
+		if (pos <= data->size_a / 2)
+		{
+			while (data->stack_a->index != 0)
+				ra(data);
+		}
+		else
+		{
+			while (data->stack_a->index != 0)
+				rra(data);
+		}
+	}
 }

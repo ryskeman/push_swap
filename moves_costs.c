@@ -6,7 +6,7 @@
 /*   By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 14:28:21 by fernafer          #+#    #+#             */
-/*   Updated: 2025/08/05 19:26:03 by fernafer         ###   ########.fr       */
+/*   Updated: 2025/08/05 21:19:10 by fernafer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	get_final_total_cost(t_push_swap *data, int cost_a, int cost_b,
 		else
 			total_cost = cost_b;
 	}
-	total_cost++;
+	//total_cost++;
 	return (total_cost);
 }
 
