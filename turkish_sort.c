@@ -6,7 +6,7 @@
 /*   By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 00:53:50 by fernafer          #+#    #+#             */
-/*   Updated: 2025/08/05 21:46:24 by fernafer         ###   ########.fr       */
+/*   Updated: 2025/08/08 21:31:23 by fernafer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,29 @@
 t_node	*find_target_in_a(t_node *stack_a_head, t_node *b_node)
 {
 	t_node	*target_node;
-	t_node	*current_b;
 	t_node	*current_a;
-	t_node	*smallest_a;
 	long	min_diff;
 
+	// t_node	*current_b;
+	// t_node	*smallest_a;
 	target_node = NULL;
 	min_diff = 2147483647;
-	current_b = b_node;
-	while (current_b)
+	current_a = stack_a_head;
+	// current_b = b_node;
+	while (current_a)
 	{
-		current_a = stack_a_head;
-		while (current_a)
+		// current_a = stack_a_head;
+		// while (current_a)
+		//{
+			ft_printf("El valor de b_node es: %d y el de current_a: %d\n",b_node->value, current_a->value);
+		if (b_node->value < current_a->value && (current_a->value - b_node->value) < min_diff)
 		{
-			if (b_node->value < current_a->value && current_a->value < min_diff)
-			{
-				min_diff = current_a->value;
-				target_node = current_a;
-			}
-			current_a = current_a->next;
+			min_diff = current_a->value - b_node->value;
+			target_node = current_a;
 		}
-		current_b = current_b->next;
+		current_a = current_a->next;
+		//}
+		// current_b = current_b->next;
 		/* case 1: B match A. Find first element > b_node->value */
 		// if (b_node->value < current_a->value && current_a->value
 		// 	- b_node->value < min_diff)
@@ -50,31 +52,21 @@ t_node	*find_target_in_a(t_node *stack_a_head, t_node *b_node)
 		bigger target B is biggest. */
 	if (target_node == NULL)
 	{
-		current_b = b_node;
-		while (current_b)
+		current_a = stack_a_head;
+		target_node = current_a;
+		while (current_a)
 		{
-			current_a = stack_a_head;
-			smallest_a = stack_a_head;
-			target_node = current_a;
-			while (current_a)
-			{
-				if (current_a->index < smallest_a->index)
-					smallest_a = current_a;
-				current_a = current_a->next;
-			}
-			current_b = current_b->next;
+			// current_a = stack_a_head;
+			// smallest_a = stack_a_head;
+			// target_node = current_a;
+			// while (current_a)
+			// {
+			if (current_a->value < target_node->value)
+				target_node = current_a;
+			current_a = current_a->next;
+			//}
 		}
-		// current_a = stack_a_head;
-		// if (!target_node)
-		// 	return (NULL);
-		// while (current_a)
-		// {
-		// 	if (current_a->index < smallest_a->index)
-		// 		smallest_a = current_a;
-		// 	current_a = current_a->next;
-		// }
 		// target_node = smallest_a;
-		target_node = smallest_a;
 	}
 	return (target_node);
 }
@@ -167,6 +159,22 @@ t_node	*get_cheapest_node(t_push_swap *data)
 	return (cheapest);
 }
 
+/* Function that updates index position */
+void	update_positions(t_node *stack_head)
+{
+	t_node	*current;
+	int		pos;
+
+	current = stack_head;
+	pos = 0;
+	while (current)
+	{
+		current->index = pos;
+		current = current->next;
+		pos++;
+	}
+}
+
 /* --- TURKISH MAIN FUNCTION ARCHITECTURE --- */
 void	sort_big(t_push_swap *data)
 {
@@ -175,27 +183,34 @@ void	sort_big(t_push_swap *data)
 	int		pos;
 
 	// 1. Phase: Push initial elements from A to B, except 0, 1, 2 index.
+	// while (data->size_a > 3 && data->size_b < 2)
+	// {
+	// 	// if (data->stack_a->index == 0
+	// 	// 	|| data->stack_a->index == 1
+	// 	// 	|| data->stack_a->index == 2)
+	// 	// 	ra(data);
+	// 	// else
+	// 	pb(data);
+	// }
 	while (data->size_a > 3)
-	{
-		// if (data->stack_a->index == 0
-		// 	|| data->stack_a->index == 1
-		// 	|| data->stack_a->index == 2)
-		// 	ra(data);
-		// else
 		pb(data);
-	}
 	// if (data->size_a == 3)
 	sort_three(data);
+	ft_printf("El stack A tras ordenar los 3 ultimos.\n");
+	print_initial_stack(data);
 	// 2. Phase: Main loop-> while B is not empty.
 	while (data->size_b > 0)
 	{
-		// 1. Asignar posiciones en los stacks.
-		// 2. Asignar targets.
+		// 1. ACTUALIZAR INDICES AQUI
+		// update_positions(data->stack_a);
+		// update_positions(data->stack_b);
+		// 2. Asignar POSICIONES Y targets AQUI.
 		cheapest_node = get_cheapest_node(data);
+		//ft_printf("El valor del nodo B: %d y su target en A%d\n", data->stack_b->value, data->stack_a->value);
 		execute_optimal_moves(data, cheapest_node);
 	}
-	print_initial_stack(data);
 	// 3. Phase: Rotate A if needed.
+	update_positions(data->stack_a);
 	if (data->stack_a->index != 0)
 	{
 		smallest_node = find_node_by_index(data->stack_a, 0);

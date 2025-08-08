@@ -6,7 +6,7 @@
 #    By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/28 17:44:36 by fernafer          #+#    #+#              #
-#    Updated: 2025/08/05 20:23:22 by fernafer         ###   ########.fr        #
+#    Updated: 2025/08/08 19:57:25 by fernafer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS)
 	@echo "Linking $(NAME)..."
+	#$(CC) $(CFLAGS) $(FSANITIZE) $(OBJS) $(LIBFT) -o $(NAME)
 	$(CC) $(CFLAGS) $(FSANITIZE) $(OBJS) $(LIBFT) -o $(NAME)
 	@echo "$(NAME) compiled succesfully!"
 
