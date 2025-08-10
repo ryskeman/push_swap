@@ -6,7 +6,7 @@
 /*   By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 14:28:21 by fernafer          #+#    #+#             */
-/*   Updated: 2025/08/08 21:31:59 by fernafer         ###   ########.fr       */
+/*   Updated: 2025/08/11 00:14:14 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	get_indiv_rot_cost(t_push_swap *data, t_node *b_node, int *cost_a_ptr,
 int	get_final_total_cost(t_push_swap *data, int cost_a, int cost_b,
 		t_node *b_node)
 {
-	int		total_cost;
 	int		pos_b;
 	int		pos_a_target;
 	t_node	*target_node_a;
@@ -75,25 +74,27 @@ int	get_final_total_cost(t_push_swap *data, int cost_a, int cost_b,
 	target_node_a = find_target_in_a(data->stack_a, b_node);
 	pos_b = get_node_position(data->stack_b, b_node);
 	pos_a_target = get_node_position(data->stack_a, target_node_a);
-	total_cost = cost_a + cost_b;
-	// If both rotates up...
-	if (pos_a_target <= data->size_a / 2 && pos_b <= data->size_b / 2)
+	
+	// DEBUG: Muestra los vakores clave para el calculo:
+	ft_printf("DEBUG: Calculando el coste para b_node %d(cost_a: %d, cost_b: %d)\n", b_node->value, cost_a, cost_b);
+        ft_printf("DEBUG: Posicion en A: %d, Posiocion en B: %d\n", pos_a_target, pos_b);
+
+	// Case 1: Rotation in same direction (both up or down)
+	if ((pos_a_target <= data->size_a / 2 && pos_b <= data->size_b / 2) || (pos_a_target > data->size_a / 2 && pos_b > data->size_b / 2))
 	{
+		ft_printf("DEBUG: -> Caso 1: Rotaciones en la misma direccion:\n");
 		if (cost_a > cost_b)
-			total_cost = cost_a;
+			return (cost_a);
 		else
-			total_cost = cost_b;
+			return (cost_b);
 	}
-	// Else both rotates down..
-	else if (pos_a_target > data->size_a / 2 && pos_b > data->size_b / 2)
+
+	// Case 2: Opposite directions rotations
+	else
 	{
-		if (cost_a > cost_b)
-			total_cost = cost_a;
-		else
-			total_cost = cost_b;
+		ft_printf("DEBUG: -> Caso 2: Rotaciones en direcciones opuestas:\n");
+		return (cost_a + cost_b);
 	}
-	//total_cost++;
-	return (total_cost);
 }
 
 /* Calculate total moves costs. */

@@ -6,12 +6,13 @@
 /*   By: fernafer <fernafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 19:16:14 by fernafer          #+#    #+#             */
-/*   Updated: 2025/08/05 20:02:29 by fernafer         ###   ########.fr       */
+/*   Updated: 2025/08/11 00:33:47 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/* Execute rotations in samne direction (rr, rrr) */
 void	execute_same_direction_rot(t_push_swap *data, t_rot_costs *rot_needs,
 		int pos_a_target, int pos_b)
 {
@@ -37,16 +38,21 @@ void	execute_same_direction_rot(t_push_swap *data, t_rot_costs *rot_needs,
 	}
 }
 
+/* Execute individual rotations in A and B*/
 void	execute_remaining_rot(t_push_swap *data, t_rot_costs rot_needs)
 {
-	while (rot_needs.ra-- > 0)
-		ra(data);
-	while (rot_needs.rb-- > 0)
-		rb(data);
-	while (rot_needs.rra-- > 0)
-		rra(data);
-	while (rot_needs.rrb-- > 0)
-		rrb(data);
+	if (rot_needs.ra > 0)
+		while (rot_needs.ra-- > 0)
+			ra(data);
+	else if (rot_needs.rra > 0)
+		while (rot_needs.rra-- > 0)
+			rra(data);
+	if (rot_needs.rb > 0)
+		while (rot_needs.rb-- > 0)
+			rb(data);
+	else if (rot_needs.rrb > 0)
+		while (rot_needs.rrb-- > 0)
+			rrb(data);
 }
 
 t_rot_costs	calculate_rot_needs(t_push_swap *data, t_node *b_node,
